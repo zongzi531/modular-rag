@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  embedding-api:
+    image: imagename
+    container_name: embedding-api
+    restart: always
+    volumes:
+       - ./model:/app/embeddings-model
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: "nvidia"
+              count: "all"
+              capabilities: ["gpu"]
