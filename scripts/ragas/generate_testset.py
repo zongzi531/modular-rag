@@ -44,4 +44,4 @@ distributions = {simple: 0.5, reasoning: 0.2, multi_context: 0.2, conditional: 0
 testset = generator.generate_with_langchain_docs(documents, test_size=100, distributions=distributions, with_debugging_logs=True, raise_exceptions=False)
 
 # 最终生成的测试集大小会小于设置的 test_size ，因为在 question_filter 的过程中会因为超过最大限制而忽略
-testset.to_pandas().to_csv('./testset.csv')
+testset.to_dataset().save_to_disk('./testset')
