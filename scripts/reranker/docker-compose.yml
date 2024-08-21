@@ -1,0 +1,18 @@
+version: "3"
+services:
+  reranker:
+    image: reranker-image
+    container_name: reranker
+    shm_size: '2gb'
+    # GPU运行环境，如果宿主机未安装，将deploy配置隐藏即可
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: all
+            capabilities: [gpu]
+    ports:
+      - 6006:6006
+    environment:
+      - ACCESS_TOKEN=mytoken

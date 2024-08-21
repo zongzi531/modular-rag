@@ -8,6 +8,10 @@ RAG example code.
 
 embeddings model to api service.
 
+### reranker
+
+reranker model to api service.
+
 ### ragas
 
 ragas generate testset and evaluate testset.
