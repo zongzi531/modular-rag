@@ -1,6 +1,6 @@
 # RAG-Example
 
-RAG related example code.
+RAG example code.
 
 ## scripts
 
