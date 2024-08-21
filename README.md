@@ -1,17 +1,15 @@
-# RAG-Example
+# Modular RAG
 
-RAG example code.
+This is RAG Modules Repo. This includes various modules in the RAG ecosystem.
 
-## scripts
+## Reranker
 
-### embeddings
+[x] reranker model to api service.
 
-embeddings model to api service.
+## Embeddings
 
-### reranker
+[x] embeddings model to api service.
 
-reranker model to api service.
+## Evaluation
 
-### ragas
-
-ragas generate testset and evaluate testset.
+[x] ragas generate testset and evaluate testset.
