@@ -3,3 +3,4 @@ cache
 .env
 testset
 result.csv
+result.json
