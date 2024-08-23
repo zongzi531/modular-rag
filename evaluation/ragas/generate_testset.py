@@ -2,6 +2,7 @@ from ragas.testset.generator import TestsetGenerator
 from ragas.testset.evolutions import simple, reasoning, multi_context, conditional
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 import shutil
+import os
 from dotenv import load_dotenv
 from langchain_community.document_loaders import DirectoryLoader, TextLoader
 from custom import testset_prompts
@@ -11,8 +12,12 @@ from custom import testset_prompts
 
 load_dotenv()
 
+if not os.path.exists("./documents"):
+    raise Exception("documents 不存在")
+
 # 尝试修复中文缓存格式问题
-shutil.rmtree("./cache")
+if os.path.exists("./cache"):
+    shutil.rmtree("./cache")
 
 loader = DirectoryLoader("./documents", loader_cls=TextLoader, show_progress=True)
 documents = loader.load()

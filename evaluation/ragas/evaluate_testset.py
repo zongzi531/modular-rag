@@ -9,6 +9,9 @@ from ragas.metrics import (
     faithfulness,
     context_recall,
     context_precision,
+    context_entity_recall,
+    answer_similarity,
+    answer_correctness,
 )
 from ragas import evaluate
 from dotenv import load_dotenv
@@ -51,6 +54,9 @@ result = evaluate(
         faithfulness,
         answer_relevancy,
         context_recall,
+        context_entity_recall,
+        answer_similarity,
+        answer_correctness,
     ],
     llm=llm,
     embeddings=embeddings,
