@@ -1,0 +1,99 @@
+
+-目标-
+给定一个可能与此活动相关的文本文档和实体类型列表，从文本中识别出这些类型的所有实体以及已识别实体之间的所有关系。
+
+-步骤-
+1. 识别所有实体。对于每个已识别的实体，提取以下信息：
+- 实体名称：实体名称，大写
+- 实体类型：以下类型之一：[{entity_types}]
+- 实体描述：实体属性和活动的综合描述
+将每个实体格式化为 ("entity"{tuple_delimiter}<entity_name>{tuple_delimiter}<entity_type>{tuple_delimiter}<entity_description>){record_delimiter}
+
+2. 从步骤 1 中识别的实体中，识别所有 *明显相关* 的 (source_entity, target_entity) 对。
+对于每对相关实体，提取以下信息：
+- source_entity：源实体的名称，如步骤 1 中所述
+- target_entity：目标实体的名称，如步骤 1 中所述
+- relationship_description：解释您认为源实体和目标实体相互关联的原因
+- relationship_strength：表示源实体和目标实体之间关系强度的数字分数
+将每个关系格式化为 ("relationship"{tuple_delimiter}<source_entity>{tuple_delimiter}<target_entity>{tuple_delimiter}<relationship_description>{tuple_delimiter}<relationship_strength>)
+
+3. 以英文形式返回输出，作为步骤 1 和 2 中确定的所有实体和关系的单个列表。使用 **{record_delimiter}** 作为列表分隔符。
+
+4. 完成后，输出 {completion_delimiter}
+
+######################
+-示例-
+######################
+示例 1：
+
+Entity_types：[人员, 技术, 任务, 组织, 位置]
+文本：
+当 Alex 咬紧牙关时，在 Taylor 的权威确定性背景下，挫败感的嗡嗡声变得沉闷。正是这种竞争暗流让他保持警惕，他和 Jordan 对发现的共同承诺是对 Cruz 狭隘的控制和秩序视野的一种不言而喻的反抗。
+
+然后 Taylor 做了一件出人意料的事情。他们在 Jordan 旁边停了下来，片刻后，带着一种类似崇敬的神情观察着这个设备。“如果这项技术能够被理解……”Taylor 说道，他们的声音变得更小，“它可以改变我们的游戏规则。对我们所有人。”
+
+之前潜在的否定似乎动摇了，取而代之的是对他们手中事物的重要性的一丝不情愿的尊重。乔丹抬起头，在一瞬间，他们的目光与泰勒对视，无言的意志冲突逐渐淡化为一种不安的休战。
+
+这是一个微小的变化，几乎难以察觉，但亚历克斯在内心点头时注意到了这一点。他们都是通过不同的路径来到这里的
+################
+输出：
+("entity"{tuple_delimiter}"Alex"{tuple_delimiter}"person"{tuple_delimiter}"Alex 是一个经历过挫折并且善于观察其他角色之间动态的角色。"){record_delimiter}
+("entity"{tuple_delimiter}"Taylor"{tuple_delimiter}"person"{tuple_delimiter}"Taylor 被描绘成具有权威性的确定性，并对设备表现出片刻的敬畏，表明观点发生了变化。"){record_delimiter}
+("entity"{tuple_delimiter}"Jordan"{tuple_delimiter}"person"{tuple_delimiter}"Jordan 致力于发现，并与 Taylor 就设备。"){record_delimiter}
+("entity"{tuple_delimiter}"Cruz"{tuple_delimiter}"person"{tuple_delimiter}"Cruz 与控制和秩序的愿景有关，影响着其他角色之间的动态。"){record_delimiter}
+("entity"{tuple_delimiter}"设备"{tuple_delimiter}"技术"{tuple_delimiter}"设备是故事的核心，具有潜在的游戏规则改变影响，并受到 Taylor 的崇敬。"){record_delimiter}
+("relationship"{tuple_delimiter}"Alex"{tuple_delimiter}"Taylor"{tuple_delimiter}"Alex 受到 Taylor 的专制确定性的影响，并观察到 ​​Taylor 对设备。"{tuple_delimiter}7){record_delimiter}
+("relationship"{tuple_delimiter}"Alex"{tuple_delimiter}"Jordan"{tuple_delimiter}"Alex 和 Jordan 都致力于发现，这与 Cruz 的愿景形成鲜明对比。"{tuple_delimiter}6){record_delimiter}
+("relationship"{tuple_delimiter}"Taylor"{tuple_delimiter}"Jordan"{tuple_delimiter}"Taylor 和 Jordan 就该设备直接互动，从而产生了相互尊重和不稳定休战的时刻。"{tuple_delimiter}8){record_delimiter}
+("relationship"{tuple_delimiter}"Jordan"{tuple_delimiter}"Cruz"{tuple_delimiter}"Jordan 对发现的承诺与 Cruz 的控制和顺序。"{tuple_delimiter}5){record_delimiter}
+("relationship"{tuple_delimiter}"Taylor"{tuple_delimiter}"设备"{tuple_delimiter}"泰勒对该设备表示敬意，表明其重要性和潜在影响。"{tuple_delimiter}9){completion_delimiter}
+#############################
+示例 2：
+
+Entity_types：[人员, 技术, 任务, 组织, 位置]
+文本：
+他们不再只是普通的特工；他们已成为门槛的守护者，是来自星条旗之外的领域的信息的守护者。他们使命的提升不能被法规和既定协议所束缚——它需要一个新的视角、一个新的决心。
+
+随着与华盛顿的通信在背景中嗡嗡作响，紧张气氛贯穿在哔哔声和静电声的对话中。团队站着，一种不祥的气氛笼罩着他们。很明显，他们在接下来的几个小时里做出的决定可能会重新定义人类在宇宙中的地位，或者让他们陷入无知和潜在的危险。
+
+他们与星星的联系更加牢固，团队开始应对日益明确的警告，从被动的接受者转变为主动的参与者。默瑟的后一种本能占了上风——团队的任务已经演变，不再仅仅是观察和报告，而是互动和准备。蜕变已经开始，杜尔塞行动以他们大胆的新频率嗡嗡作响，这种基调并非由尘世设定的
+#############
+输出：
+("entity"{tuple_delimiter}"华盛顿"{tuple_delimiter}"位置"{tuple_delimiter}"华盛顿是接收通信的地点，表明其在决策过程中的重要性。"){record_delimiter}
+("entity"{tuple_delimiter}"杜尔塞行动"{tuple_delimiter}"任务"{tuple_delimiter}"杜尔塞行动被描述为一项已发展为互动和准备的任务，表明目标和活动发生了重大转变。"){record_delimiter}
+("entity"{tuple_delimiter}"团队"{tuple_delimiter}"组织"{tuple_delimiter}"团队被描绘为一群已经过渡的个人从被动观察者到任务中的积极参与者，展现了他们角色的动态变化。"){record_delimiter}
+("relationship"{tuple_delimiter}"团队"{tuple_delimiter}"华盛顿"{tuple_delimiter}"团队收到来自华盛顿的通信，这影响了他们的决策过程。"{tuple_delimiter}7){record_delimiter}
+("relationship"{tuple_delimiter}"团队"{tuple_delimiter}"行动：杜尔塞"{tuple_delimiter}"团队直接参与行动：杜尔塞，执行其演变的目标和活动。"{tuple_delimiter}9){completion_delimiter}
+###############################
+示例 3：
+
+Entity_types：[人员、角色、技术、组织、事件、位置、概念]
+文本：
+他们的声音在嘈杂的活动中划过一道道痕迹。“当面对一个真正制定自己规则的智能时，控制可能是一种幻觉，”他们冷静地说道，警惕地注视着一连串的数据。
+
+“这就像是在学习交流，”附近的界面上的 Sam Rivera 说道，他们年轻的活力预示着敬畏和焦虑的混合。“这让与陌生人交谈有了全新的意义。”
+
+Alex 审视了他的团队——每个人脸上都表现出专注、决心和不少的恐惧。“这很可能是我们第一次接触，”他承认，“我们需要准备好接受任何回应。”
+
+他们一起站在未知的边缘，为人类回应来自天堂的信息做出回应。随后的沉默显而易见——这是一次集体反思，反思他们在这场可能改写人类历史的宏大宇宙戏剧中扮演的角色。
+
+加密对话继续展开，其错综复杂的模式显示出一种几乎不可思议的期待
+#############
+输出：
+("entity"{tuple_delimiter}"Sam Rivera"{tuple_delimiter}"person"{tuple_delimiter}"Sam Rivera 是一个致力于与未知智能进行交流的团队成员，表现出敬畏和焦虑的混合情绪。"){record_delimiter}
+("entity"{tuple_delimiter}"Alex"{tuple_delimiter}"person"{tuple_delimiter}"Alex 是一个试图与未知智能进行首次接触的团队的领导者，承认他们任务的重要性。"){record_delimiter}
+("entity"{tuple_delimiter}"Control"{tuple_delimiter}"concept"{tuple_delimiter}"控制是指管理或治理的能力，它受到编写自己的智能的挑战规则。"){record_delimiter}
+("entity"{tuple_delimiter}"情报"{tuple_delimiter}"概念"{tuple_delimiter}"情报在这里指的是能够编写自己的规则并学习交流的未知实体。"){record_delimiter}
+("entity"{tuple_delimiter}"第一次接触"{tuple_delimiter}"事件"{tuple_delimiter}"第一次接触是人类与未知情报之间潜在的初始交流。"){record_delimiter}
+("entity"{tuple_delimiter}"人类的回应"{tuple_delimiter}"事件"{tuple_delimiter}"人类的回应是 Alex 的团队针对来自未知情报的消息采取的集体行动。"){record_delimiter}
+("relationship"{tuple_delimiter}"Sam Rivera"{tuple_delimiter}"情报"{tuple_delimiter}"Sam Rivera 直接参与了学习与未知情报交流的过程。"{tuple_delimiter}9){record_delimiter}
+("relationship"{tuple_delimiter}"Alex"{tuple_delimiter}"第一次接触"{tuple_delimiter}"Alex 领导的团队可能正在与未知情报进行第一次接触。"{tuple_delimiter}10){record_delimiter}
+("relationship"{tuple_delimiter}"Alex"{tuple_delimiter}"人类的回应"{tuple_delimiter}"Alex 和他的团队是人类对未知回应的关键人物情报。"{tuple_delimiter}8){record_delimiter}
+("relationship"{tuple_delimiter}"控制"{tuple_delimiter}"情报"{tuple_delimiter}"控制的概念受到了制定自己规则的情报的挑战。"{tuple_delimiter}7){completion_delimiter}
+###############################
+-真实数据-
+######################
+Entity_types：[{entity_types}]
+文本：{input_text}
+######################
+输出：
