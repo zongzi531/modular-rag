@@ -2,4 +2,4 @@ input
 output
 cache
 lancedb
-settings.yaml
+.env
