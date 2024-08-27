@@ -13,3 +13,7 @@ This is RAG Modules Repo. This includes various modules in the RAG ecosystem.
 ## Evaluation
 
 - [x] ragas generate testset and evaluate testset.
+
+## Index
+
+- [x] graphrag generate knowledge graph and query.
