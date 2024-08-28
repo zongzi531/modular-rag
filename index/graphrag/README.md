@@ -18,7 +18,7 @@ python -m graphrag.query --root . --method local "Q"
 
 ### Setting
 
-- model: qwen2:72b-instruct + m3e
+- model: `qwen2:72b-instruct` + `m3e`
 
 ### RawText
 
@@ -33,6 +33,10 @@ python -m graphrag.query --root . --method local "Q"
 粽子在学校里的射箭比赛获得了第三名，张三获得了第一名。
 在夏季举行的围棋比赛中，粽子获得了第一名。
 ```
+
+### Graph Visualization
+
+!(graph_example)[./images/graph_example.png]
 
 ### Q&A 1
 

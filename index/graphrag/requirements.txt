@@ -1,0 +1,4 @@
+ipykernel
+graphrag
+yfiles-jupyter-graphs
+python-dotenv
