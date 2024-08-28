@@ -36,7 +36,7 @@ python -m graphrag.query --root . --method local "Q"
 
 ### Graph Visualization
 
-!(graph_example)[./images/graph_example.png]
+![graph_example](./images/graph_example.png)
 
 ### Q&A 1
 
